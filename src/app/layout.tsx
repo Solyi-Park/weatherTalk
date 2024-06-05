@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={sans.className}>
-      <body className="p-4 w-full max-w-screen-sm mx-auto">
+      <body className="p-5 w-full max-w-screen-sm mx-auto">
         <header>
           <Header />
         </header>
