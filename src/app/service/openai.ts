@@ -35,12 +35,12 @@ export async function generateWeatherMessage(
   weatherData: WeatherData
 ): Promise<string> {
   const systemMessage = {
-    role: "system" as const,
+    role: "system",
     content: `너는 ${casterDescriptions[caster]}(으)로 행동할 거야. 무관한 정보는 포함하지 마. `,
   };
 
   const userMessage = {
-    role: "user" as const,
+    role: "user",
     content: `
     날씨 설명: ${weatherData.description}
     현재 기온: ${weatherData.temp}도

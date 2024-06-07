@@ -1,17 +1,18 @@
 "use client";
-import { useState } from "react";
 import CasterAvatar from "./components/CasterAvatar";
 import WeatherMessage from "./components/WeatherMessage";
 import useLocation from "./hooks/location";
-import { Caster } from "./service/openai";
+import { CasterProvider } from "./context/CasterContext";
 
 export default function Home() {
-  const [caster, setCaster] = useState<Caster>("이장님");
-  const { lat, lon } = useLocation();
+  const { location } = useLocation();
+  const { lat, lon } = location;
   return (
     <>
-      <WeatherMessage caster={caster} lat={lat} lon={lon} />
-      <CasterAvatar />
+      <CasterProvider>
+        <WeatherMessage lat={lat} lon={lon} />
+        <CasterAvatar />
+      </CasterProvider>
     </>
   );
 }

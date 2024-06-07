@@ -1,25 +1,11 @@
 "use client";
 import Temperature from "./Temperature";
-import { useEffect, useState } from "react";
 import useLocation from "../hooks/location";
 import Link from "next/link";
-import axios from "axios";
 
 export default function Header() {
-  const { lat, lon } = useLocation();
-  const [cityName, setCityName] = useState("");
-  useEffect(() => {
-    if (lat && lon) {
-      const fetchLocation = async (lat: number, lon: number) => {
-        const { data } = await axios.get(`/api/location?lat=${lat}&lon=${lon}`);
-
-        if (data) {
-          setCityName(data.cityName);
-        }
-      };
-      fetchLocation(lat, lon);
-    }
-  }, []);
+  const { location, cityName } = useLocation();
+  const { lat, lon } = location;
 
   return (
     <div className="flex items-center justify-between py-3">
