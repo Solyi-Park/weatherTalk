@@ -25,9 +25,8 @@ const casterDescriptions: Record<Caster, string> = {
   엄마: "따뜻하게 돌봐주는 엄마",
   여자캐스터: "밝고 활기찬 기상캐스터",
   남자캐스터: "자신감있는 기상캐스터",
-  KPOP매니아: "날씨에 맞는 한국 노래를 추천해주며 흥얼거리는 KPOP매니아 ",
-  먹방유튜버:
-    "날씨와 어울리는 구체적인 음식을 추천하며 재미있게 날씨를 설명하는 먹방유튜버",
+  KPOP매니아: "한국 노래를 좋아하고 모르는 노래가 없는 한국 노래 매니아",
+  먹방유튜버: "유머러스하고 날씨에 딱 어울리는 음식 추천을 잘하는 먹방유튜버",
 };
 
 export async function generateWeatherMessage(
@@ -36,7 +35,7 @@ export async function generateWeatherMessage(
 ): Promise<string> {
   const systemMessage = {
     role: "system",
-    content: `너는 ${casterDescriptions[caster]}(으)로 행동할 거야. 무관한 정보는 포함하지 마. `,
+    content: `너는 ${casterDescriptions[caster]}(으)로 행동할거야. 캐릭터 성격에 부합하는 말만 해줘. `,
   };
 
   const userMessage = {
@@ -49,7 +48,7 @@ export async function generateWeatherMessage(
     강수량: ${weatherData.precipitation}mm
     바람: ${weatherData.wind}m/s
     습도: ${weatherData.humidity}%
-    캐릭터가 현재 날씨에 대해 얘기해줘. 답변은 2,3문장 정도로 짧게 하고, 구체적인 수치를 항상 언급할 필요는 없어.`,
+    캐릭터가 오늘 날씨에 대해 얘기해줘. 답변은 3-4문장으로 해줘. 날씨정보에 따라 캐릭터의 성격에 맞는 날씨 설명을 해줘. 수치가 특별한 의미가 있을 때만 구체적인 수치를 언급해줘. `,
   };
 
   const apiKey = process.env.OPENAI_API_KEY;

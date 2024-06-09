@@ -7,14 +7,14 @@ type CasterDetail = {
   src: string;
 };
 
-const CASTERS: CasterDetail[] = [
-  { name: "할머니", src: "/images/GrandMother.png" },
-  { name: "이장님", src: "/images/VillageChief.png" },
-  { name: "엄마", src: "/images/Mother.png" },
-  { name: "여자캐스터", src: "/images/FemaleCaster.png" },
-  { name: "남자캐스터", src: "/images/MaleCaster.png" },
-  { name: "KPOP매니아", src: "/images/KpopMania.png" },
-  { name: "먹방유튜버", src: "/images/FoodVlogger.png" },
+export const CASTERS: CasterDetail[] = [
+  { name: "할머니", src: "/images/grandma.webp" },
+  { name: "이장님", src: "/images/viliageChief.webp" },
+  { name: "엄마", src: "/images/mom.webp" },
+  { name: "여자캐스터", src: "/images/femaleCaster.webp" },
+  { name: "남자캐스터", src: "/images/maleCaster.webp" },
+  { name: "KPOP매니아", src: "/images/kpopMania.webp" },
+  { name: "먹방유튜버", src: "/images/foodVlogger.webp" },
 ];
 
 export default function CasterAvatar() {
@@ -31,16 +31,15 @@ export default function CasterAvatar() {
   const currentCaster = CASTERS.find((c) => c.name === caster);
 
   return (
-    <>
+    <div className=" flex mx-auto relative w-[500px] h-[500px]">
       {currentCaster && (
         <Image
           src={currentCaster.src}
           alt={`image of ${currentCaster.name} `}
-          width={350}
-          height={350}
+          fill
           onClick={handleAvatar}
         />
       )}
-    </>
+    </div>
   );
 }

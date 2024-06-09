@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Caster } from "../service/openai";
+import { CASTERS } from "../components/CasterAvatar";
 
 type CasterContextType = {
   caster: Caster;
@@ -19,7 +20,6 @@ export const CasterContext = createContext<CasterContextType>({
 
 export const CasterProvider = ({ children }: { children: React.ReactNode }) => {
   const [caster, setCaster] = useState<Caster>("할머니");
-
   return (
     <CasterContext.Provider value={{ caster, setCaster }}>
       {children}

@@ -39,5 +39,13 @@ export default function WeatherMessage({ lat, lon }: Props) {
   if (!isValidData) return;
   // const { message, setMessage } = useWeatherMessage({ caster, weatherData });
 
-  return <div>{message ? <p>{message}</p> : <p>Generating message...</p>}</div>;
+  return (
+    <>
+      <div className="speech-bubble relative bg-indigo-100 rounded-lg p-4">
+        <p className="text-lg ">
+          {message ? <p>{message}</p> : <p>Generating message...</p>}
+        </p>
+      </div>
+    </>
+  );
 }
