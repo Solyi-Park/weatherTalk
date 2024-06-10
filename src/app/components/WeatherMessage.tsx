@@ -1,56 +1,30 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import { Caster, WeatherData } from "../service/openai";
 
-type Props = {
-  caster: Caster;
-  lat: number;
-  lon: number;
-};
+import { useCaster } from "../context/CasterContext";
+import { useWeather } from "../context/WeatherContext";
+import MarkDownViewer from "./MarkDownViewer";
 
-export default function WeatherMessage({ caster, lat, lon }: Props) {
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [message, setMessage] = useState<string>("");
-
-  useEffect(() => {
-    if (lat && lon) {
-      const fetchWeather = async (lat: number, lon: number) => {
-        try {
-          const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
-          const data = await response.json();
-          if (data) {
-            setWeatherData({
-              description: data.weather[0].description,
-              temp: data.main.temp,
-              temp_max: data.main.temp_max,
-              temp_min: data.main.temp_min,
-              precipitation: data.rain ? data.rain["1h"] : 0,
-              wind: data.wind.speed,
-              humidity: data.main.humidity,
-            });
-          }
-        } catch (error) {
-          console.error("Error fetching weather data:", error);
-        }
-      };
-      fetchWeather(lat, lon);
-    }
-  }, [lat, lon]);
+export default function WeatherMessage() {
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { weather } = useWeather();
+  const { caster } = useCaster();
 
   useEffect(() => {
     async function fetchWeatherMessage() {
-      if (caster && weatherData) {
+      if (caster && weather) {
         try {
+          setIsLoading(true);
           const response = await fetch("/api/weather-message", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ caster, weatherData }),
+            body: JSON.stringify({ caster, weather }),
           });
           const data = await response.json();
-          console.log("res 메세지!", data);
           setMessage(data.message);
+          setIsLoading(false);
         } catch (error) {
           console.error("Error fetching weather message:", error);
         }
@@ -58,12 +32,18 @@ export default function WeatherMessage({ caster, lat, lon }: Props) {
     }
 
     fetchWeatherMessage();
-  }, [caster, weatherData]);
+  }, [caster, weather]);
+
+  const isValidData = caster && weather;
+  if (!isValidData) return;
+  // const { message, setMessage } = useWeatherMessage({ caster, weatherData });
 
   return (
-    <div>
-      <h2>Weather Message</h2>
-      {message ? <p>{message}</p> : <p>Generating message...</p>}
-    </div>
+    <>
+      <div className="flex w-96 items-center justify-center bg-indigo-100 rounded-3xl p-6 h-72">
+        {isLoading && <p>Generating message...</p>}
+        {!isLoading && message && <MarkDownViewer content={message} />}
+      </div>
+    </>
   );
 }
