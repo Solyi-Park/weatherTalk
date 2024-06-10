@@ -31,12 +31,15 @@ export default function CasterAvatar() {
   const currentCaster = CASTERS.find((c) => c.name === caster);
 
   return (
-    <div className=" flex mx-auto relative w-[500px] h-[500px]">
+    <div className="flex items-center justify-center ">
       {currentCaster && (
         <Image
+          className="cursor-pointer"
+          priority
           src={currentCaster.src}
           alt={`image of ${currentCaster.name} `}
-          fill
+          width={500}
+          height={500}
           onClick={handleAvatar}
         />
       )}

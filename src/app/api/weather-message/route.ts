@@ -2,9 +2,9 @@ import { generateWeatherMessage } from "@/app/service/openai";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { caster, weatherData } = await req.json();
+  const { caster, weather } = await req.json();
 
-  if (!caster || !weatherData) {
+  if (!caster || !weather) {
     return NextResponse.json(
       { error: "Caster and weatherData are required" },
       { status: 400 }
@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const message = await generateWeatherMessage(caster, weatherData);
-    return NextResponse.json({ message });
+    const res = await generateWeatherMessage(caster, weather);
+    return NextResponse.json(res);
   } catch (error) {
     console.error("Error generating text:", error);
     return NextResponse.json(

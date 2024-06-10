@@ -1,31 +1,30 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import useWeather from "../hooks/weather";
+
 import { useCaster } from "../context/CasterContext";
+import { useWeather } from "../context/WeatherContext";
+import MarkDownViewer from "./MarkDownViewer";
 
-type Props = {
-  lat: number;
-  lon: number;
-};
-
-export default function WeatherMessage({ lat, lon }: Props) {
+export default function WeatherMessage() {
   const [message, setMessage] = useState("");
-  const { weatherData } = useWeather(lat, lon);
+  const [isLoading, setIsLoading] = useState(false);
+  const { weather } = useWeather();
   const { caster } = useCaster();
+
   useEffect(() => {
     async function fetchWeatherMessage() {
-      if (caster && weatherData) {
+      if (caster && weather) {
         try {
+          setIsLoading(true);
           const response = await fetch("/api/weather-message", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ caster, weatherData }),
+            body: JSON.stringify({ caster, weather }),
           });
           const data = await response.json();
-          console.log("res 메세지!", data);
           setMessage(data.message);
+          setIsLoading(false);
         } catch (error) {
           console.error("Error fetching weather message:", error);
         }
@@ -33,18 +32,17 @@ export default function WeatherMessage({ lat, lon }: Props) {
     }
 
     fetchWeatherMessage();
-  }, [caster, weatherData]);
+  }, [caster, weather]);
 
-  const isValidData = caster && weatherData;
+  const isValidData = caster && weather;
   if (!isValidData) return;
   // const { message, setMessage } = useWeatherMessage({ caster, weatherData });
 
   return (
     <>
-      <div className="speech-bubble relative bg-indigo-100 rounded-lg p-4">
-        <p className="text-lg ">
-          {message ? <p>{message}</p> : <p>Generating message...</p>}
-        </p>
+      <div className="flex w-96 items-center justify-center bg-indigo-100 rounded-3xl p-6 h-72">
+        {isLoading && <p>Generating message...</p>}
+        {!isLoading && message && <MarkDownViewer content={message} />}
       </div>
     </>
   );

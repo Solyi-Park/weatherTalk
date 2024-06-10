@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import { WeatherProvider } from "./context/WeatherContext";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -23,12 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={sans.className}>
-      <body className="p-5 w-full max-w-screen-sm mx-auto">
-        <header>
-          <Header />
-        </header>
-        <main>{children}</main>
-      </body>
+      <WeatherProvider>
+        <body className="p-5 w-full max-w-screen-sm mx-auto">
+          <header>
+            <Header />
+          </header>
+          <main>{children}</main>
+        </body>
+      </WeatherProvider>
     </html>
   );
 }

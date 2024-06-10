@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import { Caster } from "../service/openai";
-import { CASTERS } from "../components/CasterAvatar";
 
 type CasterContextType = {
   caster: Caster;

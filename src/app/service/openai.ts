@@ -3,9 +3,13 @@ export type WeatherData = {
   temp: number;
   temp_max: number;
   temp_min: number;
-  precipitation: number;
+  precipitation: number | null;
   wind: number;
+  snow: number | null;
   humidity: number;
+  sunrise: number;
+  sunset: number;
+  icon: string;
 };
 
 export type Caster =
@@ -29,10 +33,15 @@ const casterDescriptions: Record<Caster, string> = {
   먹방유튜버: "유머러스하고 날씨에 딱 어울리는 음식 추천을 잘하는 먹방유튜버",
 };
 
+type Message = {
+  caster: Caster;
+  message: string;
+};
+
 export async function generateWeatherMessage(
   caster: Caster,
   weatherData: WeatherData
-): Promise<string> {
+): Promise<Message> {
   const systemMessage = {
     role: "system",
     content: `너는 ${casterDescriptions[caster]}(으)로 행동할거야. 캐릭터 성격에 부합하는 말만 해줘. `,
@@ -42,13 +51,13 @@ export async function generateWeatherMessage(
     role: "user",
     content: `
     날씨 설명: ${weatherData.description}
-    현재 기온: ${weatherData.temp}도
-    최고 기온: ${weatherData.temp_max}도
-    최저 기온: ${weatherData.temp_min}도
+    현재 기온: ${Math.floor(weatherData.temp)}도
+    최고 기온: ${Math.floor(weatherData.temp_max)}도
+    최저 기온: ${Math.floor(weatherData.temp_min)}도
     강수량: ${weatherData.precipitation}mm
     바람: ${weatherData.wind}m/s
     습도: ${weatherData.humidity}%
-    캐릭터가 오늘 날씨에 대해 얘기해줘. 답변은 3-4문장으로 해줘. 날씨정보에 따라 캐릭터의 성격에 맞는 날씨 설명을 해줘. 수치가 특별한 의미가 있을 때만 구체적인 수치를 언급해줘. `,
+    캐릭터가 오늘 날씨에 대해 얘기해줘. 답변은 3-4문장으로 해줘. 날씨정보에 따라 캐릭터의 성격에 맞는 날씨 설명을 해줘. 단, '바람', '습도'라는 직접적인 단어사용은 적게해줘. 중요한 부분에 글씨를 굵게해줘 `,
   };
 
   const apiKey = process.env.OPENAI_API_KEY;
@@ -75,7 +84,12 @@ export async function generateWeatherMessage(
     }
 
     const data = await response.json();
-    return data.choices[0].message.content;
+    const message = {
+      caster,
+      message: data.choices[0].message.content,
+    };
+
+    return message;
   } catch (error) {
     console.error("Error generating text:", error);
     throw error;

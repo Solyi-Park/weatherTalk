@@ -1,20 +1,33 @@
 "use client";
-import Temperature from "./Temperature";
+
 import useLocation from "../hooks/location";
 import Link from "next/link";
+import { useWeather } from "../context/WeatherContext";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Header() {
-  const { location, cityName } = useLocation();
-  const { lat, lon } = location;
+  const { cityName, isLoading } = useLocation();
+
+  const { weather, error } = useWeather();
 
   return (
-    <div className="flex items-center justify-between py-3">
+    <div className="flex items-center justify-between py-3 ">
       <Link href="/" aria-label="Home">
         <h1 className="font-bold text-3xl">WeatherTalk</h1>
       </Link>
-      <div className="flex gap-2">
+      <div className="flex items-center">
         <p className="text-lg">{cityName || "--"}</p>
-        <Temperature lat={lat} lon={lon} />
+        {weather && !error && !isLoading && (
+          <>
+            <WeatherIcon icon={weather?.icon || ""} />
+            <p className="text-lg ml-5">
+              <span className="font-bold">
+                {Math.floor(weather?.temp) || "--"}
+              </span>{" "}
+              ℃
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
