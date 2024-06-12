@@ -1,12 +1,14 @@
+"use client";
 import React, { useEffect, useState } from "react";
-
 import { useCaster } from "../context/CasterContext";
 import { useWeather } from "../context/WeatherContext";
 import MarkDownViewer from "./MarkDownViewer";
+import TextLoader from "./TextLoader";
 
 export default function WeatherMessage() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const { weather } = useWeather();
   const { caster } = useCaster();
 
@@ -39,11 +41,11 @@ export default function WeatherMessage() {
   // const { message, setMessage } = useWeatherMessage({ caster, weatherData });
 
   return (
-    <>
-      <div className="flex w-96 items-center justify-center bg-indigo-100 rounded-3xl p-6 h-72">
-        {isLoading && <p>Generating message...</p>}
+    <section className="flex items-center justify-center w-96 h-64">
+      <div className="flex items-center justify-center w-full h-full bg-indigo-100 rounded-3xl p-6 shadow-lg">
+        {isLoading && <TextLoader />}
         {!isLoading && message && <MarkDownViewer content={message} />}
       </div>
-    </>
+    </section>
   );
 }

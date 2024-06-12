@@ -30,6 +30,7 @@ export default function RootLayout({
             <Header />
           </header>
           <main>{children}</main>
+          <div id="portal" />
         </body>
       </WeatherProvider>
     </html>

@@ -5,7 +5,7 @@ import { CasterProvider } from "./context/CasterContext";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center m-6 ">
+    <div className="flex flex-col items-center mx-auto  ">
       <CasterProvider>
         <WeatherMessage />
         <CasterAvatar />
