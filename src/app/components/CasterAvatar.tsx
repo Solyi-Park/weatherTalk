@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { useCaster } from "../context/CasterContext";
 import { Caster } from "../service/openai";
+import { useState } from "react";
+import ModalPortal from "./ModalPortal";
+import CasterOptions from "./CasterOptions";
+import CasterModal from "./CasterModal";
 
 type CasterDetail = {
   name: Caster;
@@ -18,6 +22,7 @@ export const CASTERS: CasterDetail[] = [
 ];
 
 export default function CasterAvatar() {
+  const [openModal, setOpenModal] = useState(false);
   const { caster, setCaster } = useCaster();
 
   const currentCasterIndex = CASTERS.findIndex((c) => c.name === caster);
@@ -31,18 +36,35 @@ export default function CasterAvatar() {
   const currentCaster = CASTERS.find((c) => c.name === caster);
 
   return (
-    <div className="flex items-center justify-center ">
-      {currentCaster && (
-        <Image
-          className="cursor-pointer"
-          priority
-          src={currentCaster.src}
-          alt={`image of ${currentCaster.name} `}
-          width={500}
-          height={500}
-          onClick={handleAvatar}
-        />
+    <section className="flex flex-col py-2">
+      <div className="relative w-[400px] h-[400px]">
+        {currentCaster && (
+          <Image
+            className="cursor-pointer"
+            priority
+            src={currentCaster.src}
+            alt={`image of ${currentCaster.name} `}
+            onClick={handleAvatar}
+            fill
+          />
+        )}
+      </div>
+      <button
+        className="mt-5 p-3 bg-white bg-opacity-50 rounded-md font-bold hover:bg-opacity-30"
+        onClick={() => setOpenModal(true)}
+      >
+        {caster}
+      </button>
+      {openModal && (
+        <ModalPortal>
+          <CasterModal
+            openModal={openModal}
+            toggleModal={() => setOpenModal(!openModal)}
+          >
+            <CasterOptions onClose={() => setOpenModal(false)} />
+          </CasterModal>
+        </ModalPortal>
       )}
-    </div>
+    </section>
   );
 }
