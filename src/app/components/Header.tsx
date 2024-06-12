@@ -20,7 +20,7 @@ export default function Header() {
         {weather && !error && !isLoading && (
           <>
             <WeatherIcon icon={weather?.icon || ""} />
-            <p className="text-lg ml-5">
+            <p className="text-lg">
               <span className="font-bold">
                 {Math.floor(weather?.temp) || "--"}
               </span>{" "}

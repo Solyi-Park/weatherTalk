@@ -14,9 +14,9 @@ export default function CasterModal({
       onClick={(e) => {
         if (e.target === e.currentTarget) toggleModal(!openModal);
       }}
-      className="flex justify-center items-center fixed inset-0 bg-gray-600 bg-opacity-70 z-10"
+      className="flex justify-center items-center fixed inset-0 bg-gray-800 bg-opacity-70 z-10"
     >
-      <div className="flex bg-white w-52 h-72 rounded-md overflow-hidden">
+      <div className="flex bg-white bg-opacity-80 w-52 h-72 rounded-md overflow-hidden">
         {children}
       </div>
       ;
