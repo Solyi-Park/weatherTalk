@@ -1,18 +1,13 @@
 type Props = {
   children: React.ReactNode;
-  openModal: boolean;
-  toggleModal: (openModal: boolean) => void;
+  onClose: (openCasterModal: boolean) => void;
 };
 
-export default function CasterModal({
-  children,
-  openModal,
-  toggleModal,
-}: Props) {
+export default function CasterModal({ children, onClose }: Props) {
   return (
     <section
       onClick={(e) => {
-        if (e.target === e.currentTarget) toggleModal(!openModal);
+        if (e.target === e.currentTarget) onClose(false);
       }}
       className="flex justify-center items-center fixed inset-0 bg-gray-800 bg-opacity-70 z-10"
     >
