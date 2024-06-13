@@ -4,10 +4,12 @@ import { useCaster } from "../context/CasterContext";
 import { useWeather } from "../context/WeatherContext";
 import MarkDownViewer from "./MarkDownViewer";
 import TextLoader from "./TextLoader";
+import WeatherDetail from "./WeatherDetail";
 
 export default function WeatherMessage() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showWeatherDetail, setShowWeatherDetail] = useState(false);
 
   const { weather } = useWeather();
   const { caster } = useCaster();
@@ -42,9 +44,23 @@ export default function WeatherMessage() {
 
   return (
     <section className="flex items-center justify-center w-96 h-64">
-      <div className="flex items-center justify-center w-full h-full bg-indigo-100 rounded-3xl p-6 shadow-lg">
-        {isLoading && <TextLoader />}
-        {!isLoading && message && <MarkDownViewer content={message} />}
+      <div
+        onClick={() => setShowWeatherDetail(!showWeatherDetail)}
+        className={`flex items-center justify-center w-full h-full rounded-3xl p-6 shadow-lg ${
+          showWeatherDetail
+            ? "bg-black bg-opacity-70 text-white"
+            : "bg-indigo-100"
+        } transition-all duration-500 ease-in-out transform`}
+      >
+        {isLoading && (
+          <TextLoader color={`${showWeatherDetail ? "#fff" : "#818cf8"}`} />
+        )}
+        {!isLoading && !showWeatherDetail && message && (
+          <MarkDownViewer content={message} />
+        )}
+        {weather && !isLoading && showWeatherDetail && (
+          <WeatherDetail weather={weather} />
+        )}
       </div>
     </section>
   );

@@ -15,12 +15,11 @@ const CASTERS: Caster[] = [
   "먹방유튜버",
 ];
 export default function CasterOptions({ onClose }: Props) {
-  const { caster, setCaster } = useCaster();
+  const { setCaster } = useCaster();
 
   const handleOptions = (event: React.MouseEvent<HTMLLIElement>) => {
     const clickedText = event.currentTarget.innerText as Caster;
     setCaster(clickedText);
-    console.log("Clicked text:", clickedText);
     onClose();
   };
 
@@ -29,7 +28,7 @@ export default function CasterOptions({ onClose }: Props) {
       {CASTERS.map((caster) => (
         <li
           onClick={handleOptions}
-          className="flex justify-center items-center w-full h-full  hover:bg-indigo-50 border-b"
+          className="hover:cursor-pointer flex justify-center items-center w-full h-full  hover:bg-indigo-50 border-b"
           key={caster}
         >
           {caster}

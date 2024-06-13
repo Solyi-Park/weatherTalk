@@ -57,10 +57,7 @@ export default function CasterAvatar() {
       </button>
       {openModal && (
         <ModalPortal>
-          <CasterModal
-            openModal={openModal}
-            toggleModal={() => setOpenModal(!openModal)}
-          >
+          <CasterModal onClose={() => setOpenModal(false)}>
             <CasterOptions onClose={() => setOpenModal(false)} />
           </CasterModal>
         </ModalPortal>
