@@ -4,8 +4,10 @@ import { useCaster } from "../context/CasterContext";
 type Props = {
   onClose: () => void;
 };
+export type ExtendedCaster = Caster | "랜덤";
 
-const CASTERS: Caster[] = [
+const CASTERS: ExtendedCaster[] = [
+  "랜덤",
   "할머니",
   "이장님",
   "엄마",
@@ -18,8 +20,14 @@ export default function CasterOptions({ onClose }: Props) {
   const { setCaster } = useCaster();
 
   const handleOptions = (event: React.MouseEvent<HTMLLIElement>) => {
-    const clickedText = event.currentTarget.innerText as Caster;
-    setCaster(clickedText);
+    const clickedText = event.currentTarget.innerText as ExtendedCaster;
+
+    if (clickedText === "랜덤") {
+      const randomIndex = Math.floor(Math.random() * (CASTERS.length - 1)) + 1;
+      setCaster(CASTERS[randomIndex] as Caster);
+    } else {
+      setCaster(clickedText);
+    }
     onClose();
   };
 

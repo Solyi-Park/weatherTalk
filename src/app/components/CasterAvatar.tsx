@@ -23,15 +23,7 @@ export const CASTERS: CasterDetail[] = [
 
 export default function CasterAvatar() {
   const [openModal, setOpenModal] = useState(false);
-  const { caster, setCaster } = useCaster();
-
-  const currentCasterIndex = CASTERS.findIndex((c) => c.name === caster);
-  const nextCasterIndex =
-    currentCasterIndex !== -1 && currentCasterIndex + 1 < CASTERS.length
-      ? currentCasterIndex + 1
-      : 0;
-
-  const handleAvatar = () => setCaster(CASTERS[nextCasterIndex].name);
+  const { caster } = useCaster();
 
   const currentCaster = CASTERS.find((c) => c.name === caster);
 
@@ -40,11 +32,9 @@ export default function CasterAvatar() {
       <div className="relative w-[400px] h-[400px]">
         {currentCaster && (
           <Image
-            className="cursor-pointer"
             priority
             src={currentCaster.src}
             alt={`image of ${currentCaster.name} `}
-            onClick={handleAvatar}
             fill
           />
         )}
