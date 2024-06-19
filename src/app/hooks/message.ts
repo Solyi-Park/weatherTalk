@@ -1,31 +1,34 @@
 import useSWR from "swr";
-import { WeatherData } from "../service/openai";
 import axios from "axios";
-import { useState } from "react";
+import { Caster, WeatherData } from "../service/openai";
+
 type Props = {
-  caster: string;
-  weatherData: WeatherData;
+  caster: Caster;
+  weather: WeatherData;
 };
 
-const fetcher = async (url: string, { caster, weatherData }: Props) => {
-  return await axios
-    .post(url, {
-      method: "POST",
+const fetcher = async (url: string, { caster, weather }: Props) => {
+  const response = await axios.post(
+    url,
+    { caster, weather },
+    {
       headers: {
         "Content-Type": "application/json",
       },
-      data: { caster, weatherData },
-    })
-    .then((res) => res.data);
+    }
+  );
+  return response.data.message;
 };
 
-export async function useWeatherMessage({ caster, weatherData }: Props) {
-  const [message, setMessage] = useState("");
-  const { data, isLoading, error } = useSWR("/api/weather-message", (url) =>
-    fetcher(url, { caster, weatherData })
+export function useWeatherMessage(caster: Caster, weather: WeatherData) {
+  const { data, error, isLoading } = useSWR(
+    ["/api/weather-message", caster && weather && { caster, weather }],
+    ([url, props]) => fetcher(url, props)
   );
-  if (!data) return;
-  setMessage(data);
 
-  return { message, setMessage, isLoading, error };
+  return {
+    message: data,
+    isLoading,
+    error,
+  };
 }

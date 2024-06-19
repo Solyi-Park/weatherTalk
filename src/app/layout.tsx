@@ -21,15 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={sans.className}>
-      <WeatherProvider>
-        <body className="p-5 w-full max-w-screen-sm mx-auto">
+      <body className="p-5 w-full max-w-screen-sm mx-auto">
+        <WeatherProvider>
           <header>
             <Header />
           </header>
           <main>{children}</main>
-          <div id="portal" />
-        </body>
-      </WeatherProvider>
+        </WeatherProvider>
+        <div id="portal" />
+      </body>
     </html>
   );
 }

@@ -3,7 +3,7 @@ export type IconSize = "small" | "large";
 
 type Props = {
   icon: string;
-  size: IconSize;
+  size?: IconSize;
 };
 
 export default function WeatherIcon({ icon, size = "small" }: Props) {

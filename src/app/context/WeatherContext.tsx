@@ -46,7 +46,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
               icon: data.icon,
             };
             setWeather(weatherData);
-            setError(null); // 성공적으로 데이터를 가져왔으므로 에러 상태 초기화
+            setError(null);
           }
         } catch (error) {
           console.error("Error fetching weather data:", error);
@@ -56,7 +56,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     };
 
     fetchWeather();
-  }, [lat, lon]); // lat와 lon이 변경될 때마다 fetchWeather를 호출
+  }, [lat, lon]);
 
   return (
     <WeatherContext.Provider value={{ weather, error }}>

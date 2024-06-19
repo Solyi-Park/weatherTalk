@@ -18,37 +18,36 @@ export default function useLocation() {
 
   useEffect(() => {
     if (geolocation) {
-      geolocation.getCurrentPosition(
-        (position) => {
-          const newLocation = {
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          };
-          setLocation(newLocation);
-          fetchCityName(newLocation.lat, newLocation.lon);
-        },
-        (error) => console.log(error, "Unable to retrieve your location")
-      );
+      geolocation.getCurrentPosition(onGeoOk, onGeoError);
     } else {
       console.log("Geolocation is not supported by your browser");
       setGeoError("Geolocation is not supported by your browser");
     }
+  }, [geolocation]);
 
-    const fetchCityName = async (lat: number, lon: number) => {
-      if (lat && lon) {
-        try {
-          setIsLoading(true);
-          const { data } = await axios.get(
-            `/api/location?lat=${lat}&lon=${lon}`
-          );
-          setCityName(data.cityName);
-          setIsLoading(false);
-        } catch (error) {
-          console.log("Error fetching location");
-        }
-      }
+  const onGeoOk = (position: GeolocationPosition) => {
+    const newLocation = {
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
     };
-  }, []);
+    setLocation(newLocation);
+    fetchCityName(newLocation.lat, newLocation.lon);
+  };
+  const onGeoError = (error: GeolocationPositionError) =>
+    console.log(error, "Unable to retrieve your location");
+
+  const fetchCityName = async (lat: number, lon: number) => {
+    if (lat && lon) {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(`/api/location?lat=${lat}&lon=${lon}`);
+        setCityName(data.cityName);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("Error fetching location");
+      }
+    }
+  };
 
   return { location, cityName, isLoading, error };
 }

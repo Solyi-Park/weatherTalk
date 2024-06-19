@@ -5,12 +5,11 @@ import React, {
   useContext,
   useState,
 } from "react";
-
-import { ExtendedCaster } from "../components/CasterOptions";
+import { Caster } from "../service/openai";
 
 type CasterContextType = {
-  caster: ExtendedCaster;
-  setCaster: Dispatch<SetStateAction<ExtendedCaster>>;
+  caster: Caster;
+  setCaster: Dispatch<SetStateAction<Caster>>;
 };
 
 export const CasterContext = createContext<CasterContextType>({
@@ -19,7 +18,7 @@ export const CasterContext = createContext<CasterContextType>({
 });
 
 export const CasterProvider = ({ children }: { children: React.ReactNode }) => {
-  const [caster, setCaster] = useState<ExtendedCaster>("할머니");
+  const [caster, setCaster] = useState<Caster>("할머니");
   return (
     <CasterContext.Provider value={{ caster, setCaster }}>
       {children}

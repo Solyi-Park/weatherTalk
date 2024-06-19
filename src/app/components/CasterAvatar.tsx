@@ -1,44 +1,55 @@
+"use client";
 import Image from "next/image";
 import { useCaster } from "../context/CasterContext";
 import { Caster } from "../service/openai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalPortal from "./ModalPortal";
-import CasterOptions from "./CasterOptions";
+import CasterOptions, { CASTER_KEY } from "./CasterOptions";
 import CasterModal from "./CasterModal";
-
-type CasterDetail = {
-  name: Caster;
-  src: string;
-};
-
-export const CASTERS: CasterDetail[] = [
-  { name: "할머니", src: "/images/grandma.webp" },
-  { name: "이장님", src: "/images/viliageChief.webp" },
-  { name: "엄마", src: "/images/mom.webp" },
-  { name: "여자캐스터", src: "/images/femaleCaster.webp" },
-  { name: "남자캐스터", src: "/images/maleCaster.webp" },
-  { name: "KPOP매니아", src: "/images/kpopMania.webp" },
-  { name: "먹방유튜버", src: "/images/foodVlogger.webp" },
-];
+import { FULLCASTERS, CasterDetail } from "../data/casters";
 
 export default function CasterAvatar() {
   const [openModal, setOpenModal] = useState(false);
-  const { caster } = useCaster();
+  const { caster, setCaster } = useCaster();
+  const [currentCaster, setCurrentCaster] = useState<CasterDetail | null>(null);
 
-  const currentCaster = CASTERS.find((c) => c.name === caster);
+  const randomIndex = Math.floor(Math.random() * FULLCASTERS.length);
 
+  useEffect(() => {
+    const savedCaster = localStorage.getItem(CASTER_KEY);
+    if (savedCaster) {
+      const foundCaster = FULLCASTERS.find((c) => c.name === savedCaster);
+      if (foundCaster) {
+        setCurrentCaster(foundCaster);
+        setCaster(foundCaster.name);
+      }
+    } else {
+      const randomCaster = FULLCASTERS[randomIndex];
+      setCurrentCaster(randomCaster);
+      setCaster(randomCaster.name);
+      localStorage.setItem(CASTER_KEY, randomCaster.name);
+    }
+  }, [setCaster]);
+
+  const onClickAvatar = () => {
+    const newCaster = FULLCASTERS[randomIndex];
+    setCurrentCaster(newCaster);
+    setCaster(newCaster.name);
+    localStorage.setItem(CASTER_KEY, newCaster.name);
+  };
   return (
     <section className="flex flex-col py-2">
-      <div className="relative w-[400px] h-[400px]">
-        {currentCaster && (
+      {currentCaster && (
+        <div className="relative w-[400px] h-[400px] hover:cursor-pointer">
           <Image
             priority
             src={currentCaster.src}
             alt={`image of ${currentCaster.name} `}
             fill
+            onClick={onClickAvatar}
           />
-        )}
-      </div>
+        </div>
+      )}
       <button
         className="mt-5 p-3 bg-white bg-opacity-50 rounded-md font-bold hover:bg-opacity-30"
         onClick={() => setOpenModal(true)}
