@@ -6,13 +6,12 @@ import { CASTER_KEY } from "../components/caster/CasterOptions";
 
 export default function useAvatar() {
   const { caster, setCaster } = useCaster();
-  const [currentCaster, setCurrentCaster] = useState<CasterDetail | null>(null);
 
   const selectRandomCaster = () => {
     const randomIndex = Math.floor(Math.random() * FULLCASTERS.length);
     const randomCaster = FULLCASTERS[randomIndex];
-    setCurrentCaster(randomCaster);
-    setCaster(randomCaster.name);
+
+    setCaster(randomCaster);
     localStorage.setItem(CASTER_KEY, randomCaster.name);
   };
 
@@ -21,13 +20,12 @@ export default function useAvatar() {
     if (savedCaster) {
       const foundCaster = FULLCASTERS.find((c) => c.name === savedCaster);
       if (foundCaster) {
-        setCurrentCaster(foundCaster);
-        setCaster(foundCaster.name);
+        setCaster(foundCaster);
       }
     } else {
       selectRandomCaster();
     }
   }, [caster]);
 
-  return { caster, currentCaster, selectRandomCaster };
+  return { caster, selectRandomCaster };
 }

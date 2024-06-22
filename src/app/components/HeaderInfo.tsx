@@ -10,16 +10,18 @@ export default function HeaderInfo() {
 
   const error = locationError || weatherError;
   return (
-    <div className="flex items-center">
-      <p className="text-lg">{cityName || "---"}</p>
-      {weather && !weatherError && !isLoading && (
-        <div className="flex items-center">
-          <WeatherIcon icon={weather.icon || ""} />
-          <p className="text-lg font-bold">
-            {Math.floor(weather.temp) || "--"}℃
-          </p>
-        </div>
-      )}
+    <div className="flex items-center justify-between w-[200px] h-full ">
+      <p className="text-xl font-bold">{cityName || "---"}</p>
+      <div className="flex items-center gap-3 h-full w-22">
+        {weather && !weatherError && !isLoading && (
+          <>
+            <p className="text-lg font-bold">
+              {Math.floor(weather.temp) || "--"}℃
+            </p>
+            <WeatherIcon icon={weather.icon} size="large" />
+          </>
+        )}
+      </div>
     </div>
   );
 }

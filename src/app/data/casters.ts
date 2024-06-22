@@ -2,19 +2,19 @@ import { Caster } from "../service/openai";
 
 export type CasterDetail = {
   name: Caster;
-  src: string;
+  path: string;
 };
 
 export const FULLCASTERS: CasterDetail[] = [
-  { name: "할머니", src: "/images/grandma.webp" },
-  { name: "이장님", src: "/images/viliageChief.webp" },
-  { name: "엄마", src: "/images/mom.webp" },
-  { name: "여자캐스터", src: "/images/femaleCaster.webp" },
-  { name: "남자캐스터", src: "/images/maleCaster.webp" },
-  { name: "KPOP매니아", src: "/images/kpopMania.webp" },
-  { name: "먹방유튜버", src: "/images/foodVlogger.webp" },
-  { name: "패션인플루언서1", src: "/images/femaleInfluencer.webp" },
-  { name: "패션인플루언서2", src: "/images/maleInfluencer.webp" },
+  { name: "할머니", path: "/images/grandma.webp" },
+  { name: "이장님", path: "/images/viliageChief.webp" },
+  { name: "엄마", path: "/images/mom.webp" },
+  { name: "여자캐스터", path: "/images/femaleCaster.webp" },
+  { name: "남자캐스터", path: "/images/maleCaster.webp" },
+  { name: "KPOP매니아", path: "/images/kpopMania.webp" },
+  { name: "먹방유튜버", path: "/images/foodVlogger.webp" },
+  { name: "패션인플루언서1", path: "/images/femaleInfluencer.webp" },
+  { name: "패션인플루언서2", path: "/images/maleInfluencer.webp" },
 ];
 
 export const CASTERS: Caster[] = [

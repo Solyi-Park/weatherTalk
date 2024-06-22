@@ -6,7 +6,7 @@ import CasterAvatar from "./components/caster/CasterAvatar";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center mx-auto  ">
+    <div className="flex flex-col items-center mx-auto p-2">
       <CasterProvider>
         <QueryProvider>
           <WeatherMessage />

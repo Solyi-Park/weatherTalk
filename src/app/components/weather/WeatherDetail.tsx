@@ -5,6 +5,7 @@ import { convertSuntime } from "@/app/utils/time";
 type Props = {
   weather: WeatherData;
 };
+const SPANSTYLE = "ml-2";
 
 export default function WeatherDetail({ weather }: Props) {
   const {
@@ -21,7 +22,7 @@ export default function WeatherDetail({ weather }: Props) {
     icon,
   } = weather;
   return (
-    <section className="text-white flex flex-col items-center">
+    <section className="text-white flex flex-col items-center leading-7">
       <p className="font-bold text-4xl">
         {Math.floor(temp)}
         <span>℃</span>
@@ -30,33 +31,34 @@ export default function WeatherDetail({ weather }: Props) {
         <p>{description}</p>
         <WeatherIcon icon={icon} size="small" />
       </div>
-      <p className="text-lg mb-2">
+      <p>
         최고:
-        <span className="ml-2 font-bold">{Math.floor(temp_max)}℃</span> | 최저:
-        <span className="ml-2 font-bold">{Math.floor(temp_min)}℃</span>
+        <span className={SPANSTYLE}>{Math.floor(temp_max)}℃</span> | 최저:
+        <span className={SPANSTYLE}>{Math.floor(temp_min)}℃</span>
       </p>
-      <p className="text-lg mb-2">
-        일출:<span className="ml-2">{convertSuntime(sunrise)}</span> | 일몰:
-        <span className="ml-2">{convertSuntime(sunset)}</span>
+      <p>
+        일출:<span className={SPANSTYLE}>{convertSuntime(sunrise)}</span> |
+        일몰:
+        <span className={SPANSTYLE}>{convertSuntime(sunset)}</span>
       </p>
       {precipitation && (
-        <p className="text-lg mb-2">
-          비:<span className="ml-2">{precipitation}</span>mm/h
+        <p>
+          비:<span className={SPANSTYLE}>{precipitation}</span>mm/h
         </p>
       )}
       {snow && (
-        <p className="text-lg mb-2">
-          눈:<span className="ml-2">{snow}</span>mm/h
+        <p>
+          눈:<span className={SPANSTYLE}>{snow}</span>mm/h
         </p>
       )}
-      <div className="flex gap-2 text-lg mb-2">
+      <div className="flex gap-2 mb-2">
         <p>
           습도:
-          <span className="ml-2">{humidity}</span>% |
+          <span className={SPANSTYLE}>{humidity}</span>% |
         </p>
         <p>
           바람:
-          <span className="ml-2">{wind}</span>m/s
+          <span className={SPANSTYLE}>{wind}</span>m/s
         </p>
       </div>
     </section>

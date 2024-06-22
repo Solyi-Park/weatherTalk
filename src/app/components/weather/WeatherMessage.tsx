@@ -14,12 +14,12 @@ export default function WeatherMessage() {
   const { weather } = useWeather();
   const { caster } = useCaster();
   const { message, isLoading, error } = useWeatherMessage(
-    caster,
+    caster.name,
     weather as WeatherData
   );
 
   return (
-    <section className="flex items-center justify-center w-96 h-64">
+    <section className="flex items-center justify-center w-96 h-72 hover:cursor-pointer">
       <div
         onClick={() => setShowWeatherDetail(!showWeatherDetail)}
         className={`flex items-center justify-center w-full h-full rounded-3xl p-6 shadow-lg ${
