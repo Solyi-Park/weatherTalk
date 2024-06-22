@@ -2,7 +2,7 @@
 
 import useLocation from "../hooks/location";
 import { useWeather } from "../context/WeatherContext";
-import WeatherIcon from "./WeatherIcon";
+import WeatherIcon from "./weather/WeatherIcon";
 
 export default function HeaderInfo() {
   const { cityName, isLoading, error: locationError } = useLocation();

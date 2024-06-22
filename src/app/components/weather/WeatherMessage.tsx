@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { useCaster } from "../context/CasterContext";
-import { useWeather } from "../context/WeatherContext";
-import MarkDownViewer from "./MarkDownViewer";
-import TextLoader from "./TextLoader";
+import { useCaster } from "../../context/CasterContext";
+import { useWeather } from "../../context/WeatherContext";
+import MarkDownViewer from "../MarkDownViewer";
+import TextLoader from "../TextLoader";
 import WeatherDetail from "./WeatherDetail";
-import { useWeatherMessage } from "../hooks/message";
-import { WeatherData } from "../service/openai";
+import { useWeatherMessage } from "../../hooks/message";
+import { WeatherData } from "../../service/openai";
 
 export default function WeatherMessage() {
   const [showWeatherDetail, setShowWeatherDetail] = useState(false);

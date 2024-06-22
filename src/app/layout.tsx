@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import { WeatherProvider } from "./context/WeatherContext";
+import Head from "next/head";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={sans.className}>
+    <html lang="ko" className={sans.className}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body className="p-5 w-full max-w-screen-sm mx-auto">
         <WeatherProvider>
           <header>

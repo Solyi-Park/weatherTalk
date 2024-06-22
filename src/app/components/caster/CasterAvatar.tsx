@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import ModalPortal from "./ModalPortal";
 import CasterOptions from "./CasterOptions";
+import useAvatar from "@/app/hooks/caster";
+import ModalPortal from "../ModalPortal";
 import CasterModal from "./CasterModal";
-import useAvatar from "../hooks/caster";
 
 export default function CasterAvatar() {
   const [openModal, setOpenModal] = useState(false);
@@ -19,7 +19,7 @@ export default function CasterAvatar() {
             src={currentCaster.src}
             alt={`image of ${currentCaster.name} `}
             fill
-            onClick={() => selectRandomCaster}
+            onClick={selectRandomCaster}
           />
         </div>
       )}

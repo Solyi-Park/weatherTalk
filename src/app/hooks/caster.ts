@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useCaster } from "../context/CasterContext";
 import { CasterDetail, FULLCASTERS } from "../data/casters";
-import { CASTER_KEY } from "../components/CasterOptions";
+import { CASTER_KEY } from "../components/caster/CasterOptions";
 
 export default function useAvatar() {
   const { caster, setCaster } = useCaster();
@@ -27,7 +27,7 @@ export default function useAvatar() {
     } else {
       selectRandomCaster();
     }
-  }, [setCaster]);
+  }, [caster]);
 
   return { caster, currentCaster, selectRandomCaster };
 }

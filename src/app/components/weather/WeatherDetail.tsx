@@ -1,7 +1,6 @@
-import { WeatherData } from "../service/openai";
-import { convertSuntime } from "../utils/time";
-
+import { WeatherData } from "@/app/service/openai";
 import WeatherIcon from "./WeatherIcon";
+import { convertSuntime } from "@/app/utils/time";
 
 type Props = {
   weather: WeatherData;
