@@ -6,6 +6,7 @@ import useAvatar from "@/app/hooks/avatar";
 import ModalPortal from "../ModalPortal";
 import CasterModal from "./CasterModal";
 import AvatarImage from "./AvatarImage";
+import { CircleLoader } from "react-spinners";
 
 export default function CasterAvatar() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,12 +15,14 @@ export default function CasterAvatar() {
   return (
     <section className="flex flex-col items-center py-2 w-[400px] h-full">
       <div className="relative w-[350px] h-[350px] hover:cursor-pointer">
-        {caster && (
+        {caster ? (
           <AvatarImage
             name={caster.name}
             src={caster.path}
             onClick={selectRandomCaster}
           />
+        ) : (
+          <CircleLoader />
         )}
       </div>
       <button

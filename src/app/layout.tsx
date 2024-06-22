@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     default: "WeatherTalk",
   },
   description: `"weatherTalk"은 날씨 정보를 특별한 캐릭터들의 재미있는 메시지와 함께 제공합니다.`,
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -22,9 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={sans.className}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <body className="flex flex-col justify-center p-5 w-full max-w-screen-sm mx-auto">
         <WeatherProvider>
           <Header />

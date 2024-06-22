@@ -10,9 +10,9 @@ export default function HeaderInfo() {
 
   const error = locationError || weatherError;
   return (
-    <div className="flex items-center justify-between w-[200px] h-full ">
-      <p className="text-xl font-bold">{cityName || "---"}</p>
-      <div className="flex items-center gap-3 h-full w-22">
+    <div className="flex items-center justify-end h-full">
+      <p className="text-xl font-bold mr-4">{cityName || "---"}</p>
+      <div className="flex items-center h-full w-20">
         {weather && !weatherError && !isLoading && (
           <>
             <p className="text-lg font-bold">
