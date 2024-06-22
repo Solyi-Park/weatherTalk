@@ -112,7 +112,8 @@ export async function generateWeatherMessage(
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o",
+        // model: "gpt-3.5-turbo",
         messages: [systemMessage, userMessage],
         max_tokens: 150,
       },

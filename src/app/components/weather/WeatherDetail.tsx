@@ -5,7 +5,12 @@ import { convertSuntime } from "@/app/utils/time";
 type Props = {
   weather: WeatherData;
 };
-const SPANSTYLE = "ml-2";
+type WeatherDetailType = {
+  label: string;
+  data: number | string | null;
+  unit?: string;
+  style?: string;
+};
 
 export default function WeatherDetail({ weather }: Props) {
   const {
@@ -21,6 +26,51 @@ export default function WeatherDetail({ weather }: Props) {
     sunset,
     icon,
   } = weather;
+
+  const WEATHERDETAIL: WeatherDetailType[] = [
+    {
+      label: "최고",
+      data: Math.floor(temp_max),
+      unit: "℃",
+      style: "text-red-400",
+    },
+    {
+      label: "최저",
+      data: Math.floor(temp_min),
+      unit: "℃",
+      style: "text-blue-400",
+    },
+    {
+      label: "일출",
+      data: convertSuntime(sunrise),
+    },
+    {
+      label: "일몰",
+      data: convertSuntime(sunset),
+    },
+    {
+      label: "비",
+      data: precipitation,
+      unit: "mm/h",
+    },
+    {
+      label: "눈",
+      data: snow,
+      unit: "mm/h",
+    },
+    {
+      label: "습도",
+      data: humidity,
+      unit: "%",
+    },
+    {
+      label: "바람",
+      data: wind,
+      unit: " m/s",
+    },
+  ];
+  const filteredDetail = WEATHERDETAIL.filter((item) => item.data !== null);
+
   return (
     <section className="text-white flex flex-col items-center leading-7">
       <p className="font-bold text-4xl">
@@ -31,36 +81,16 @@ export default function WeatherDetail({ weather }: Props) {
         <p>{description}</p>
         <WeatherIcon icon={icon} size="small" />
       </div>
-      <p>
-        최고:
-        <span className={SPANSTYLE}>{Math.floor(temp_max)}℃</span> | 최저:
-        <span className={SPANSTYLE}>{Math.floor(temp_min)}℃</span>
-      </p>
-      <p>
-        일출:<span className={SPANSTYLE}>{convertSuntime(sunrise)}</span> |
-        일몰:
-        <span className={SPANSTYLE}>{convertSuntime(sunset)}</span>
-      </p>
-      {precipitation && (
-        <p>
-          비:<span className={SPANSTYLE}>{precipitation}</span>mm/h
-        </p>
-      )}
-      {snow && (
-        <p>
-          눈:<span className={SPANSTYLE}>{snow}</span>mm/h
-        </p>
-      )}
-      <div className="flex gap-2 mb-2">
-        <p>
-          습도:
-          <span className={SPANSTYLE}>{humidity}</span>% |
-        </p>
-        <p>
-          바람:
-          <span className={SPANSTYLE}>{wind}</span>m/s
-        </p>
-      </div>
+      <ul className="grid grid-cols-2">
+        {filteredDetail.map((item) => (
+          <li>
+            <p className={`${item.style} text-lg mb-1`}>
+              {item.label}: {item.data}
+              {item.unit}
+            </p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
