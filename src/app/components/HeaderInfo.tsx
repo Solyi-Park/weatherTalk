@@ -1,7 +1,6 @@
 "use client";
-
 import useLocation from "../hooks/location";
-import { useWeather } from "../context/WeatherContext";
+import useWeather from "../hooks/weather";
 import WeatherIcon from "./weather/WeatherIcon";
 
 export default function HeaderInfo() {

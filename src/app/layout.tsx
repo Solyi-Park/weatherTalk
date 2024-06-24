@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import { WeatherProvider } from "./context/WeatherContext";
-import Head from "next/head";
+import QueryProvider from "@/QueryClient";
 
 const sans = Open_Sans({ subsets: ["latin"], display: "swap" });
 
@@ -24,11 +23,11 @@ export default function RootLayout({
   return (
     <html lang="ko" className={sans.className}>
       <body className="flex flex-col justify-center p-5 w-full max-w-screen-sm mx-auto">
-        <WeatherProvider>
+        <QueryProvider>
           <Header />
           <main>{children}</main>
-        </WeatherProvider>
-        <div id="portal" />
+          <div id="portal" />
+        </QueryProvider>
       </body>
     </html>
   );

@@ -40,7 +40,6 @@ const casterDescriptions: Record<Caster, string> = {
 };
 
 type Message = {
-  caster: Caster;
   message: string;
 };
 
@@ -126,7 +125,6 @@ export async function generateWeatherMessage(
     );
     const data = response.data;
     const message = {
-      caster,
       message: data.choices[0].message.content,
     };
 

@@ -1,13 +1,13 @@
-import useSWR from "swr";
 import axios from "axios";
 import { Caster, WeatherData } from "../service/openai";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   caster: Caster;
   weather: WeatherData;
 };
 
-const fetcher = async (url: string, { caster, weather }: Props) => {
+export const fetcher = async (url: string, { caster, weather }: Props) => {
   const response = await axios.post(
     url,
     { caster, weather },
@@ -21,10 +21,15 @@ const fetcher = async (url: string, { caster, weather }: Props) => {
 };
 
 export function useWeatherMessage(caster: Caster, weather: WeatherData) {
-  const { data, error, isLoading } = useSWR(
-    ["/api/weather-message", caster && weather && { caster, weather }],
-    ([url, props]) => fetcher(url, props)
-  );
+  const fetchWeatherMessage = async () => {
+    return fetcher("/api/weather-message", { caster, weather });
+  };
+  const { data, error, isLoading } = useQuery<string>({
+    queryKey: ["message", caster, weather],
+    queryFn: fetchWeatherMessage,
+    enabled: !!caster && !!weather,
+    staleTime: 5 * 60 * 1000,
+  });
 
   return {
     message: data,
