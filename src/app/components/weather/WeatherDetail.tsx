@@ -83,7 +83,7 @@ export default function WeatherDetail({ weather }: Props) {
       </div>
       <ul className="grid grid-cols-2">
         {filteredDetail.map((item) => (
-          <li>
+          <li key={item.label}>
             <p className={`${item.style} text-lg mb-1`}>
               {item.label}: {item.data}
               {item.unit}
