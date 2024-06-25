@@ -28,7 +28,6 @@ export function useWeatherMessage(caster: Caster, weather: WeatherData) {
     queryKey: ["message", caster, weather],
     queryFn: fetchWeatherMessage,
     enabled: !!caster && !!weather,
-    staleTime: 5 * 60 * 1000,
   });
 
   return {

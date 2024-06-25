@@ -30,13 +30,13 @@ export default function WeatherDetail({ weather }: Props) {
   const WEATHERDETAIL: WeatherDetailType[] = [
     {
       label: "최고",
-      data: Math.floor(temp_max),
+      data: Math.round(temp_max),
       unit: "℃",
       style: "text-red-400",
     },
     {
       label: "최저",
-      data: Math.floor(temp_min),
+      data: Math.round(temp_min),
       unit: "℃",
       style: "text-blue-400",
     },
@@ -81,7 +81,7 @@ export default function WeatherDetail({ weather }: Props) {
         <p>{description}</p>
         <WeatherIcon icon={icon} size="small" />
       </div>
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-2 gap-x-7">
         {filteredDetail.map((item) => (
           <li key={item.label}>
             <p className={`${item.style} text-lg mb-1`}>

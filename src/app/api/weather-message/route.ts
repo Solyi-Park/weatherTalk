@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { caster, weather } = await req.json();
-  // console.log("caster", caster, "weather", weather);
+
   if (!caster || !weather) {
     return NextResponse.json(
       { error: "Caster and weatherData are required" },

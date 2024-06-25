@@ -50,5 +50,9 @@ export default function useWeather() {
     }
   }
 
-  return { weather, isLoading, error };
+  return {
+    weather,
+    isWeatherLoading: isLoading,
+    error,
+  };
 }

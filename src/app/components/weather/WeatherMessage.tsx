@@ -13,7 +13,7 @@ export default function WeatherMessage() {
 
   const { weather } = useWeather();
   const { caster } = useCaster();
-  const { message, isLoading, error } = useWeatherMessage(
+  const { message, isLoading, error, refetchMessage } = useWeatherMessage(
     caster.name,
     weather as WeatherData
   );
@@ -28,7 +28,7 @@ export default function WeatherMessage() {
             : "bg-indigo-100"
         } transition-all duration-500 ease-in-out transform`}
       >
-        {isLoading && (
+        {!message && isLoading && (
           <TextLoader color={`${showWeatherDetail ? "#fff" : "#818cf8"}`} />
         )}
         {!isLoading && !showWeatherDetail && message && (
