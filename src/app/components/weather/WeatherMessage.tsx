@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { useCaster } from "../../context/CasterContext";
 import MarkDownViewer from "../MarkDownViewer";
@@ -13,10 +12,11 @@ export default function WeatherMessage() {
 
   const { weather } = useWeather();
   const { caster } = useCaster();
-  const { message, isLoading, error, refetchMessage } = useWeatherMessage(
+  const { message, isLoading, error } = useWeatherMessage(
     caster.name,
     weather as WeatherData
   );
+  const LoaderColor = showWeatherDetail ? "#fff" : "#818cf8";
 
   return (
     <section className="flex items-center justify-center w-96 h-72 hover:cursor-pointer">
@@ -28,8 +28,8 @@ export default function WeatherMessage() {
             : "bg-indigo-100"
         } transition-all duration-500 ease-in-out transform`}
       >
-        {!message && isLoading && (
-          <TextLoader color={`${showWeatherDetail ? "#fff" : "#818cf8"}`} />
+        {(isLoading || (!isLoading && !message)) && (
+          <TextLoader color={LoaderColor} />
         )}
         {!isLoading && !showWeatherDetail && message && (
           <MarkDownViewer content={message} />

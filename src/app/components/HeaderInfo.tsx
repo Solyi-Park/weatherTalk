@@ -30,21 +30,26 @@ export default function HeaderInfo() {
       >
         <RefreshIcon />
       </button>
-      {isLoading && !cityName && !weather && (
+      {isLoading || (!cityName && !weather) ? (
         <div className="flex items-center justify-around w-full h-full ">
           <HeaderInfoLoader />
           <HeaderInfoLoader />
         </div>
-      )}
-
-      {!isLoading && !error && cityName && weather && (
-        <div className="flex items-center w-full ">
-          <p className="text-xl font-bold w-1/2">{cityName}</p>
-          <p className="text-lg font-bold w-1/4">{Math.round(weather.temp)}℃</p>
-          <div className="flex items-center w-1/4 h-full">
-            <WeatherIcon icon={weather.icon} size="large" />
+      ) : (
+        !isLoading &&
+        !error &&
+        cityName &&
+        weather && (
+          <div className="flex items-center w-full ">
+            <p className="text-xl font-bold w-1/2">{cityName}</p>
+            <p className="text-lg font-bold w-1/4">
+              {Math.round(weather.temp)}℃
+            </p>
+            <div className="flex items-center w-1/4 h-full">
+              <WeatherIcon icon={weather.icon} size="large" />
+            </div>
           </div>
-        </div>
+        )
       )}
     </div>
   );
