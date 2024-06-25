@@ -6,19 +6,27 @@ import React, {
   useState,
 } from "react";
 import { Caster } from "../service/openai";
+import { CasterDetail } from "../data/casters";
 
 type CasterContextType = {
-  caster: Caster;
-  setCaster: Dispatch<SetStateAction<Caster>>;
+  caster: CasterDetail;
+  setCaster: Dispatch<SetStateAction<CasterDetail>>;
 };
 
 export const CasterContext = createContext<CasterContextType>({
-  caster: "할머니",
+  caster: {
+    name: "할머니",
+    path: "/images/grandma.webp",
+  },
   setCaster: () => {},
 });
 
 export const CasterProvider = ({ children }: { children: React.ReactNode }) => {
-  const [caster, setCaster] = useState<Caster>("할머니");
+  const initialState: CasterDetail = {
+    name: "할머니",
+    path: "/images/grandma.webp",
+  };
+  const [caster, setCaster] = useState<CasterDetail>(initialState);
   return (
     <CasterContext.Provider value={{ caster, setCaster }}>
       {children}

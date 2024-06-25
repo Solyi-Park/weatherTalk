@@ -1,31 +1,38 @@
-import useSWR from "swr";
-import { WeatherData } from "../service/openai";
 import axios from "axios";
-import { useState } from "react";
+import { Caster, WeatherData } from "../service/openai";
+import { useQuery } from "@tanstack/react-query";
+
 type Props = {
-  caster: string;
-  weatherData: WeatherData;
+  caster: Caster;
+  weather: WeatherData;
 };
 
-const fetcher = async (url: string, { caster, weatherData }: Props) => {
-  return await axios
-    .post(url, {
-      method: "POST",
+export const fetcher = async (url: string, { caster, weather }: Props) => {
+  const response = await axios.post(
+    url,
+    { caster, weather },
+    {
       headers: {
         "Content-Type": "application/json",
       },
-      data: { caster, weatherData },
-    })
-    .then((res) => res.data);
+    }
+  );
+  return response.data.message;
 };
 
-export async function useWeatherMessage({ caster, weatherData }: Props) {
-  const [message, setMessage] = useState("");
-  const { data, isLoading, error } = useSWR("/api/weather-message", (url) =>
-    fetcher(url, { caster, weatherData })
-  );
-  if (!data) return;
-  setMessage(data);
+export function useWeatherMessage(caster: Caster, weather: WeatherData) {
+  const fetchWeatherMessage = async () => {
+    return fetcher("/api/weather-message", { caster, weather });
+  };
+  const { data, error, isLoading } = useQuery<string>({
+    queryKey: ["message", caster, weather],
+    queryFn: fetchWeatherMessage,
+    enabled: !!caster && !!weather,
+  });
 
-  return { message, setMessage, isLoading, error };
+  return {
+    message: data,
+    isLoading,
+    error,
+  };
 }
