@@ -10,7 +10,6 @@ export default function WeatherIcon({ icon, size = "small" }: Props) {
   return (
     <Image
       src={`https://openweathermap.org/img/wn/${icon}@2x.png
-      
       `}
       width={getIconSize(size)}
       height={getIconSize(size)}

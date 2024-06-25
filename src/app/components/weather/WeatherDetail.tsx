@@ -79,7 +79,7 @@ export default function WeatherDetail({ weather }: Props) {
       </p>
       <div className="flex items-center">
         <p>{description}</p>
-        <WeatherIcon icon={icon} size="small" />
+        <WeatherIcon icon={icon} size="large" />
       </div>
       <ul className="grid grid-cols-2 gap-x-7">
         {filteredDetail.map((item) => (

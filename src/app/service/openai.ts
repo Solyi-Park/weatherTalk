@@ -32,7 +32,7 @@ const casterDescriptions: Record<Caster, string> = {
     "구수한 전라도 사투리를 쓰고 나이 많고 무심한듯 잔소리 하는 까칠한 욕쟁이 할머니",
   엄마: "따뜻하고 자상하게 돌봐주는 엄마",
   여자캐스터: "밝고 활기찬 기상캐스터",
-  남자캐스터: "섬세하게 날씨를 전하는 기상캐스터",
+  남자캐스터: "섬세하게 날씨를 전하는 예의 바른 기상캐스터",
   KPOP매니아: "친구같은 말투를 사용하는 한국 음악 전문가",
   먹방유튜버: "유머러스하고 유쾌한 음식유튜버",
   패션인플루언서1: "친근한 말투의 트렌디한 여자 패션 인플루언서",
@@ -73,7 +73,7 @@ export async function generateWeatherMessage(
     - 먹방유튜버: 날씨에 어울리는 음식 메뉴 하나를 추천해줘.
     - 패션인플루언서1: 날씨에 어울리는 여자 패션 스타일을 추천해줘.
     - 패션인플루언서2: 날씨에 어울리는 남자 패션 스타일을 추천해줘.
-    - 다른 캐릭터: 각자의 성격에 맞게 날씨를 설명해줘.
+    - 다른 캐릭터: 각자의 성격에 맞는 말투로 날씨를 설명해줘.
   
     여기 각 캐릭터의 예시 응답을 참고해:
     - 이장님: ${exampleResponses["이장님"]}
@@ -111,8 +111,8 @@ export async function generateWeatherMessage(
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        // model: "gpt-4o",
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o",
+        // model: "gpt-3.5-turbo",
         messages: [systemMessage, userMessage],
         max_tokens: 150,
       },
