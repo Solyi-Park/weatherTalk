@@ -19,17 +19,9 @@ export default function HeaderInfo() {
   const isLoading = isCityNameLoading || isWeatherLoading;
   const error = cityNameError || geolocationError || weatherError;
 
-  const handleRefresh = () => {};
   return (
     <div className="flex items-center h-full basis-1/3 ">
-      <button
-        aira-label="Page Refresh"
-        onClick={handleRefresh}
-        type="button"
-        className="mr-2"
-      >
-        <RefreshIcon />
-      </button>
+      <button aira-label="Page Refresh" type="button" className="mr-2"></button>
       {isLoading || (!cityName && !weather) ? (
         <div className="flex items-center justify-around w-full h-full ">
           <HeaderInfoLoader />

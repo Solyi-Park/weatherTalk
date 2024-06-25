@@ -7,7 +7,7 @@ import { useWeatherMessage } from "../../hooks/message";
 import { WeatherData } from "../../service/openai";
 import useWeather from "@/app/hooks/weather";
 
-const CASTERSLOADINGMESSAGES = [
+const casterLoadingMessages = [
   {
     casterName: "이장님",
     message:
@@ -52,22 +52,25 @@ const CASTERSLOADINGMESSAGES = [
 
 export default function WeatherMessage() {
   const [showWeatherDetail, setShowWeatherDetail] = useState(false);
-
   const { weather } = useWeather();
   const { caster } = useCaster();
   const { message, isLoading, error } = useWeatherMessage(
     caster.name,
     weather as WeatherData
   );
-  const LoaderColor = showWeatherDetail ? "#fff" : "#818cf8";
-  const loadingMessage = CASTERSLOADINGMESSAGES.find(
+  const loadingMessage = casterLoadingMessages.find(
     (m) => m.casterName === caster.name
   );
+  const LoaderColor = showWeatherDetail ? "#fff" : "#818cf8";
+
+  const handleWeatherDetailToggle = () => {
+    setShowWeatherDetail(!showWeatherDetail);
+  };
 
   return (
     <section className="flex items-center justify-center w-96 h-72 hover:cursor-pointer">
       <div
-        onClick={() => setShowWeatherDetail(!showWeatherDetail)}
+        onClick={handleWeatherDetailToggle}
         className={`flex items-center justify-center w-full h-full rounded-3xl p-6 shadow-lg ${
           showWeatherDetail
             ? "bg-black bg-opacity-70 text-white"
