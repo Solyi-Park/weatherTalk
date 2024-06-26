@@ -1,6 +1,6 @@
 "use client";
 import QueryProvider from "@/QueryClient";
-import WeatherMessage from "./components/caster/CasterMessage";
+import OpenaiMessage from "./components/OpenaiMessage";
 import { CasterProvider } from "./context/CasterContext";
 import CasterAvatar from "./components/caster/CasterAvatar";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -10,7 +10,7 @@ export default function Home() {
     <div className="flex flex-col items-center mx-auto p-2">
       <QueryProvider>
         <CasterProvider>
-          <WeatherMessage />
+          <OpenaiMessage />
           <CasterAvatar />
         </CasterProvider>
         <ReactQueryDevtools initialIsOpen={false} />

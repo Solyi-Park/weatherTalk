@@ -20,19 +20,19 @@ export const fetcher = async (url: string, { caster, weather }: Props) => {
   return response.data.message;
 };
 
-export function useWeatherMessage(caster: Caster, weather: WeatherData) {
-  const fetchWeatherMessage = async () => {
-    return fetcher("/api/weather-message", { caster, weather });
+export function useOpenaiMessage(caster: Caster, weather: WeatherData) {
+  const fetchOpenaiMessage = async () => {
+    return fetcher("/api/generate-weather-message", { caster, weather });
   };
   const { data, error, isLoading } = useQuery<string>({
     queryKey: ["message", caster, weather],
-    queryFn: fetchWeatherMessage,
+    queryFn: fetchOpenaiMessage,
     enabled: !!caster && !!weather,
   });
 
   return {
     message: data,
     isLoading,
-    error,
+    MessageError: error,
   };
 }
