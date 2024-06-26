@@ -7,12 +7,14 @@ type Props = {
 };
 
 export default function WeatherIcon({ icon, size = "small" }: Props) {
+  // console.log("icon", icon);
   return (
     <Image
       src={`/api/weather-icon?icon=${icon}`}
       width={getIconSize(size)}
       height={getIconSize(size)}
       alt="weather icon"
+      unoptimized={true}
     />
   );
 }
