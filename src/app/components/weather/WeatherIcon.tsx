@@ -7,10 +7,9 @@ type Props = {
 };
 
 export default function WeatherIcon({ icon, size = "small" }: Props) {
-  // console.log("icon", icon);
   return (
     <Image
-      src={`/api/weather-icon?icon=${icon}`}
+      src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
       width={getIconSize(size)}
       height={getIconSize(size)}
       alt="weather icon"

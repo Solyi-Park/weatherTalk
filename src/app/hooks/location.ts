@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 export type Location = {
@@ -12,18 +10,7 @@ export default function useLocation() {
     lat: null,
     lon: null,
   });
-  const [geolocationError, setGeolocationError] = useState<string | null>(null);
-
-  const {
-    data: cityName,
-    isLoading: isCityNameLoading,
-    error: cityNameError,
-  } = useQuery({
-    queryKey: ["cityName", location.lat, location.lon],
-    queryFn: () =>
-      location ? fetchCityName(location.lat!, location.lon!) : null,
-    enabled: !!location.lat && !!location.lon,
-  });
+  const [locationError, setlocationError] = useState<string | null>(null);
 
   useEffect(() => {
     const { geolocation } = navigator;
@@ -31,7 +18,7 @@ export default function useLocation() {
       geolocation.getCurrentPosition(onGeoOk, onGeoError);
     } else {
       console.log("Geolocation is not supported");
-      setGeolocationError("Geolocation is not supported");
+      setlocationError("Geolocation is not supported");
     }
   }, []);
 
@@ -46,22 +33,5 @@ export default function useLocation() {
   const onGeoError = (error: GeolocationPositionError) =>
     console.log(error, "Unable to retrieve your location");
 
-  async function fetchCityName(lat: number, lon: number): Promise<string> {
-    if (lat === null || lon === null) throw new Error("Invalid location");
-    try {
-      const { data } = await axios.get(`/api/location?lat=${lat}&lon=${lon}`);
-      return data.cityName;
-    } catch (error) {
-      console.log("Error fetching location");
-      throw new Error("Error fetching location");
-    }
-  }
-
-  return {
-    location,
-    cityName,
-    isCityNameLoading,
-    cityNameError,
-    geolocationError,
-  };
+  return { lat: location.lat, lon: location.lon, locationError };
 }

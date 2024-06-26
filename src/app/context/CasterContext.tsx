@@ -5,8 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Caster } from "../service/openai";
-import { CasterDetail } from "../data/casters";
+import { CasterDetail } from "../constants/casters";
 
 type CasterContextType = {
   caster: CasterDetail;

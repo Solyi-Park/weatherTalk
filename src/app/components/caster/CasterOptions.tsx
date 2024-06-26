@@ -1,6 +1,6 @@
 import { Caster } from "../../service/openai";
 import { useCaster } from "../../context/CasterContext";
-import { CASTERS, FULLCASTERS } from "../../data/casters";
+import { CASTERS, FULLCASTERS } from "../../constants/casters";
 
 type Props = {
   onClose: () => void;
