@@ -1,6 +1,6 @@
 "use client";
 import QueryProvider from "@/QueryClient";
-import WeatherMessage from "./components/weather/WeatherMessage";
+import WeatherMessage from "./components/caster/CasterMessage";
 import { CasterProvider } from "./context/CasterContext";
 import CasterAvatar from "./components/caster/CasterAvatar";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

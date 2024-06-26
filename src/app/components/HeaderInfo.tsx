@@ -1,23 +1,15 @@
 "use client";
-import { useCaster } from "../context/CasterContext";
-import useLocation from "../hooks/location";
+import useCityName from "../hooks/cityName";
 import useWeather from "../hooks/weather";
 import HeaderInfoLoader from "./HeaderInfoLoader";
-import RefreshIcon from "./RefreshIcon";
 import WeatherIcon from "./weather/WeatherIcon";
 
 export default function HeaderInfo() {
-  const {
-    location,
-    cityName,
-    isCityNameLoading,
-    cityNameError,
-    geolocationError,
-  } = useLocation();
+  const { cityName, isCityNameLoading, cityNameError } = useCityName();
   const { weather, isWeatherLoading, error: weatherError } = useWeather();
 
   const isLoading = isCityNameLoading || isWeatherLoading;
-  const error = cityNameError || geolocationError || weatherError;
+  const error = cityNameError || weatherError;
 
   return (
     <div className="flex items-center h-full basis-1/3 ">

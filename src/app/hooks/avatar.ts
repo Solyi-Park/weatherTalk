@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useCallback } from "react";
 import { useCaster } from "../context/CasterContext";
-import { FULLCASTERS } from "../data/casters";
+import { FULLCASTERS } from "../constants/casters";
 import { CASTER_KEY } from "../components/caster/CasterOptions";
 
 export default function useAvatar() {

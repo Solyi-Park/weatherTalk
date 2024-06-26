@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { WeatherData } from "../service/openai";
 import axios from "axios";
-import useLocation from "./location";
 import { useQuery } from "@tanstack/react-query";
+import useLocation from "./location";
 
 export default function useWeather() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
-  const { location } = useLocation();
-  const { lat, lon } = location;
+  const { lat, lon } = useLocation();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["weather", lat, lon],
