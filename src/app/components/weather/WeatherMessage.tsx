@@ -61,7 +61,10 @@ export default function WeatherMessage() {
   const loadingMessage = casterLoadingMessages.find(
     (m) => m.casterName === caster.name
   );
-  const LoaderColor = showWeatherDetail ? "#fff" : "#818cf8";
+  const loaderColor = showWeatherDetail ? "#fff" : "#818cf8";
+  const loadingMessageColor = showWeatherDetail
+    ? "text-white"
+    : "text-gray-600";
 
   const handleWeatherDetailToggle = () => {
     setShowWeatherDetail(!showWeatherDetail);
@@ -77,12 +80,12 @@ export default function WeatherMessage() {
             : "bg-indigo-100"
         } transition-all duration-500 ease-in-out transform`}
       >
-        {(isLoading || (!isLoading && !message)) && (
+        {(isLoading || (!isLoading && !message && !showWeatherDetail)) && (
           <div className="flex flex-col items-center gap-5">
-            <p className="text-center text-lg text-gray-600 italic">
+            <p className={`text-center text-lg italic ${loadingMessageColor}`}>
               {loadingMessage?.message}
             </p>
-            <TextLoader color={LoaderColor} />
+            <TextLoader color={loaderColor} />
           </div>
         )}
         {!isLoading && !showWeatherDetail && message && (

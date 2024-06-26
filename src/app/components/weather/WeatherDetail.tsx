@@ -74,7 +74,7 @@ export default function WeatherDetail({ weather }: Props) {
   return (
     <section className="text-white flex flex-col items-center leading-7">
       <p className="font-bold text-4xl">
-        {Math.floor(temp)}
+        {Math.round(temp)}
         <span>℃</span>
       </p>
       <div className="flex items-center">
