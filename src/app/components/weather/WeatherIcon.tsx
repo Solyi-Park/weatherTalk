@@ -1,4 +1,3 @@
-import Image from "next/image";
 export type IconSize = "small" | "large";
 
 type Props = {
@@ -8,12 +7,11 @@ type Props = {
 
 export default function WeatherIcon({ icon, size = "small" }: Props) {
   return (
-    <Image
+    <img
       src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
       width={getIconSize(size)}
       height={getIconSize(size)}
       alt="weather icon"
-      unoptimized={true}
     />
   );
 }
