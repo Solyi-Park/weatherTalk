@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export type IconSize = "small" | "large";
 
 type Props = {
@@ -6,11 +8,12 @@ type Props = {
 };
 
 export default function WeatherIcon({ icon, size = "small" }: Props) {
+  console.log("icon", icon);
   return (
-    <img
-      src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-      width={getIconSize(size)}
-      height={getIconSize(size)}
+    <Image
+      src={`https://openweathermap.org/img/wn/01d@2x.png`}
+      width={40}
+      height={40}
       alt="weather icon"
     />
   );

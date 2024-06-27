@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getLocation } from "../../service/location";
+import { getCityname } from "../../service/city";
 
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
@@ -11,20 +11,20 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const data = await getLocation(lat, lon);
+    const data = await getCityname(lat, lon);
 
     if (data && data.length > 0) {
-      return NextResponse.json({ cityName: data[0].local_names.ko });
+      return NextResponse.json({ cityname: data[0].local_names.ko });
     } else {
       return NextResponse.json(
-        { message: "Location not found" },
+        { message: "cityname not found" },
         { status: 404 }
       );
     }
   } catch (error) {
-    console.error("Error fetching location data:", error);
+    console.error("Error fetching cityname data:", error);
     return NextResponse.json(
-      { message: "Error fetching location data" },
+      { message: "Error fetching cityname data" },
       { status: 500 }
     );
   }
