@@ -14,7 +14,6 @@ export default function HeaderInfo() {
 
   return (
     <div className="flex items-center h-full basis-1/3 min-w-[130px] xs:w-[120px] ">
-      <button aira-label="Page Refresh" type="button" className="mr-2"></button>
       {isLoading || (!cityname && !weather) ? (
         <div className="flex items-center justify-around w-full h-full ">
           <HeaderInfoLoader />
