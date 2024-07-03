@@ -3,7 +3,8 @@ import axios from "axios";
 import useLocation from "./location";
 
 async function fetchCityname(lat: number, lon: number): Promise<string> {
-  if (lat === null || lon === null) throw new Error("Invalid location");
+  if (lat === undefined || lon === undefined)
+    throw new Error("Invalid location");
   try {
     const { data } = await axios.get(`/api/cityname?lat=${lat}&lon=${lon}`);
     return data.cityname;
@@ -23,7 +24,7 @@ export default function useCityname() {
   } = useQuery({
     queryKey: ["cityname", lat, lon],
 
-    queryFn: () => (lat && lon ? fetchCityname(lat!, lon!) : null),
+    queryFn: () => fetchCityname(lat!, lon!),
     enabled: !!lat && !!lon,
   });
 
