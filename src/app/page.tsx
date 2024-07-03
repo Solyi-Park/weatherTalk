@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-3">
       <QueryProvider>
         <CasterProvider>
           <OpenaiMessage />

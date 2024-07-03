@@ -29,10 +29,10 @@ export default function OpenaiMessage() {
   };
 
   return (
-    <section className="flex items-center justify-center w-full h-1/2 hover:cursor-pointer p-3 min-w-screen-xs">
+    <section className="flex items-center justify-center w-full h-full hover:cursor-pointer min-w-screen-xs">
       <div
         onClick={handleWeatherDetailToggle}
-        className={`min-w-screen-xs flex items-center justify-center h-full w-full rounded-3xl shadow-lg overflow-y-auto p-3 sm:p-5 ${
+        className={`min-w-screen-xs flex items-center justify-center xs:h-[250px] sm- w-full h-full max-h-[300px] rounded-3xl shadow-lg overflow-y-auto p-3 sm:p-5 ${
           showWeatherDetail
             ? "bg-black bg-opacity-70 text-white"
             : "bg-indigo-100"
@@ -40,9 +40,7 @@ export default function OpenaiMessage() {
       >
         {(isLoading || (!isLoading && !message && !showWeatherDetail)) && (
           <div className="flex flex-col items-center gap-5">
-            <p
-              className={`text-center text-lg italic xs:text-md ${loadingMessageColor}`}
-            >
+            <p className={`text-center text-md italic ${loadingMessageColor}`}>
               {loadingMessage?.message}
             </p>
             <TextLoader color={loaderColor} />
