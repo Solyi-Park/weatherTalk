@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useCaster } from "../context/CasterContext";
-import MarkDownViewer from "./MarkDownViewer";
-import TextLoader from "./TextLoader";
-import WeatherDetail from "./weather/WeatherDetail";
-import { useOpenaiMessage } from "../hooks/message";
-import { WeatherData } from "../service/openai";
+import { useCaster } from "../../context/CasterContext";
+import MarkDownViewer from "../MarkDownViewer";
+import TextLoader from "../TextLoader";
+import WeatherDetail from "./WeatherDetail";
+import { useOpenaiMessage } from "../../hooks/message";
+import { WeatherData } from "../../service/openai";
 import useWeather from "@/app/hooks/weather";
 import { LOADINGMESSAGES } from "@/app/constants/message";
 
@@ -29,10 +29,10 @@ export default function OpenaiMessage() {
   };
 
   return (
-    <section className="flex items-center justify-center w-96 h-72 hover:cursor-pointer">
+    <section className="flex items-center justify-center w-full h-1/2 hover:cursor-pointer p-3 min-w-screen-xs">
       <div
         onClick={handleWeatherDetailToggle}
-        className={`flex items-center justify-center w-full h-full rounded-3xl p-6 shadow-lg ${
+        className={`min-w-screen-xs flex items-center justify-center h-full w-full rounded-3xl shadow-lg overflow-y-auto p-3 sm:p-5 ${
           showWeatherDetail
             ? "bg-black bg-opacity-70 text-white"
             : "bg-indigo-100"
@@ -40,7 +40,9 @@ export default function OpenaiMessage() {
       >
         {(isLoading || (!isLoading && !message && !showWeatherDetail)) && (
           <div className="flex flex-col items-center gap-5">
-            <p className={`text-center text-lg italic ${loadingMessageColor}`}>
+            <p
+              className={`text-center text-lg italic xs:text-md ${loadingMessageColor}`}
+            >
               {loadingMessage?.message}
             </p>
             <TextLoader color={loaderColor} />

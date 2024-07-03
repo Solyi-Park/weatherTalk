@@ -14,8 +14,8 @@ export default function WeatherDetail({ weather }: Props) {
   const filteredDetail = WEATHERDETAIL.filter((item) => item.data !== null);
 
   return (
-    <section className="text-white flex flex-col items-center leading-7">
-      <p className="font-bold text-4xl">
+    <section className="text-white flex flex-col items-center w-full leading-7">
+      <p className="font-bold text-4xl xs:text-2xl">
         {Math.round(temp)}
         <span>℃</span>
       </p>
@@ -26,7 +26,7 @@ export default function WeatherDetail({ weather }: Props) {
       <ul className="grid grid-cols-2 gap-x-7">
         {filteredDetail.map((item) => (
           <li key={item.label}>
-            <p className={`${item.style} text-lg mb-1`}>
+            <p className={`${item.style} xs:text-sm text-md mb-1`}>
               {item.label}: {item.data}
               {item.unit}
             </p>
