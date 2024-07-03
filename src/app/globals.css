@@ -2,10 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  height: 100vh;
+  width: 100vw;
+}
 body {
   max-width: 100vw;
+  max-height: 100vh;
+  width: 500px;
   height: 100vh;
-  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   background-color: rgb(129 140 248);
 }

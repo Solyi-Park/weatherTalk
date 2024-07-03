@@ -12,8 +12,8 @@ export default function CasterAvatar() {
   const { caster, selectRandomCaster } = useAvatar();
 
   return (
-    <section className="flex flex-col items-center py-2 w-[400px] h-full">
-      <div className="relative w-[350px] h-[350px] hover:cursor-pointer">
+    <section className="flex flex-col w-full h-full items-center py-2">
+      <div className="relative w-[300px] h-[300px] hover:cursor-pointer sm:w-[350px] sm:h-[350px] xs:w-[280px] xs:h-[280px]">
         {caster ? (
           <AvatarImage
             name={caster.name}

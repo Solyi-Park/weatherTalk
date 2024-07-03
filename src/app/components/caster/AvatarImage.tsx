@@ -13,7 +13,7 @@ export default function AvatarImage({ name, src, onClick }: Props) {
       alt={`image of ${name} `}
       fill
       onClick={onClick}
-      sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px"
+      // sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px"
     />
   );
 }

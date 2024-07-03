@@ -22,10 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={sans.className}>
-      <body className="flex flex-col justify-center p-5 w-full max-w-screen-sm mx-auto">
+      <body>
         <QueryProvider>
           <Header />
-          <main>{children}</main>
+          <main className="flex flex-col h-full w-full">{children}</main>
           <div id="portal" />
         </QueryProvider>
       </body>
