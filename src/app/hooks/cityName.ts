@@ -8,7 +8,7 @@ async function fetchCityname(lat: number, lon: number): Promise<string> {
     const { data } = await axios.get(`/api/cityname?lat=${lat}&lon=${lon}`);
     return data.cityname;
   } catch (error) {
-    console.log("Error fetching cityname");
+    console.error("Error fetching cityname", error);
     throw new Error("Error fetching cityname");
   }
 }
@@ -22,7 +22,8 @@ export default function useCityname() {
     error: citynameError,
   } = useQuery({
     queryKey: ["cityname", lat, lon],
-    queryFn: () => (location ? fetchCityname(lat!, lon!) : null),
+
+    queryFn: () => (lat && lon ? fetchCityname(lat!, lon!) : null),
     enabled: !!lat && !!lon,
   });
 
