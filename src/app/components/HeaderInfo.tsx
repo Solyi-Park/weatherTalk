@@ -1,5 +1,4 @@
 "use client";
-
 import useCityname from "../hooks/cityname";
 import useWeather from "../hooks/weather";
 import HeaderInfoLoader from "./HeaderInfoLoader";
