@@ -9,12 +9,11 @@ WeatherTalk은 사용자가 선택한 캐릭터가 현재 위치의 날씨 정�
 - **랜덤 캐릭터 기능**: 캐스터 아바타 클릭시 랜덤으로 캐릭터가 변경되어 날씨 정보를 제공합니다.
 - **날씨 상세 정보 제공**: 메세지 창을 클릭시 현재 날씨의 상세 정보를 제공합니다.
 - **반응형 디자인**: 다양한 기기에서 최적화된 UI를 제공합니다.
+<img width="429" alt="스크린샷 2024-07-03 오후 7 03 00" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/618527f1-87fb-483e-9a20-ebca398a7942">
+<img width="443" alt="스크린샷 2024-07-03 오후 7 02 39" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/1477b35e-970b-430c-acc8-b3bd829e82e2">
+<img width="443" alt="스크린샷 2024-07-03 오후 7 02 54" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/bf1118eb-062b-41fd-9641-b678e6f23c63">
+<img width="426" alt="스크린샷 2024-07-03 오후 7 03 31" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/828522e2-7c91-4476-bca5-4c64c256ede1">
 
-<img width="429" alt="스크린샷 2024-07-03 오후 7 03 00" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/2a813c4e-07bb-4864-b3e5-52df29c62441">
-<img width="443" alt="스크린샷 2024-07-03 오후 7 02 39" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/8c76cbc1-b193-4ac5-bdf7-ae8c9994e050">
-<img width="443" alt="스크린샷 2024-07-03 오후 7 02 54" src="https://github.com/Solyi-P
-<img width="426" alt="스크린샷 2024-07-03 오후 7 03 31" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/6b368fe9-b25d-4272-83a9-d71e913bdd19">
-ark/weatherTalk/assets/121113217/d4b90e51-8af4-4b93-9c5b-63a1f9c8210d">
 
 
 ## 기술 스택
