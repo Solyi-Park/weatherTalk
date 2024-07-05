@@ -7,12 +7,14 @@ WeatherTalk은 사용자가 선택한 캐릭터가 현재 위치의 날씨 정�
 - **실시간 날씨 정보 제공**: 사용자의 현재 위치를 기반으로 날씨 정보를 제공합니다.
 - **캐릭터 선택 기능**: 다양한 캐릭터 중에서 선택할 수 있으며, 선택한 캐릭터는 로컬 스토리지에 저장됩니다.
 - **랜덤 캐릭터 기능**: 캐스터 아바타 클릭시 랜덤으로 캐릭터가 변경되어 날씨 정보를 제공합니다.
+- **날씨 상세 정보 제공**: 메세지 창을 클릭시 현재 날씨의 상세 정보를 제공합니다.
 - **반응형 디자인**: 다양한 기기에서 최적화된 UI를 제공합니다.
 
 <img width="429" alt="스크린샷 2024-07-03 오후 7 03 00" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/2a813c4e-07bb-4864-b3e5-52df29c62441">
 <img width="443" alt="스크린샷 2024-07-03 오후 7 02 39" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/8c76cbc1-b193-4ac5-bdf7-ae8c9994e050">
-<img width="443" alt="스크린샷 2024-07-03 오후 7 02 54" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/d4b90e51-8af4-4b93-9c5b-63a1f9c8210d">
-![Uploading 스크린샷 2024-07-03 오후 7.03.31.png…]()
+<img width="443" alt="스크린샷 2024-07-03 오후 7 02 54" src="https://github.com/Solyi-P
+<img width="426" alt="스크린샷 2024-07-03 오후 7 03 31" src="https://github.com/Solyi-Park/weatherTalk/assets/121113217/6b368fe9-b25d-4272-83a9-d71e913bdd19">
+ark/weatherTalk/assets/121113217/d4b90e51-8af4-4b93-9c5b-63a1f9c8210d">
 
 
 ## 기술 스택
