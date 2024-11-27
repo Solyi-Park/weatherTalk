@@ -51,15 +51,6 @@ WeatherTalk의 주요 기능을 시연하는 GIF입니다.
 
 ![weather-talk 시연](https://github.com/user-attachments/assets/58345f37-0f80-4b8c-9df7-7f873fc3cd11)
 
-### **랜딩 페이지**
-![랜딩 페이지](https://github.com/Solyi-Park/weatherTalk/assets/121113217/bf1118eb-062b-41fd-9641-b678e6f23c63)
-
-### **캐릭터 선택**
-![캐릭터 선택](https://github.com/Solyi-Park/weatherTalk/assets/121113217/828522e2-7c91-4476-bca5-4c64c256ede1)
-
-### **날씨 상세 정보**
-![날씨 상세 정보](https://github.com/Solyi-Park/weatherTalk/assets/121113217/618527f1-87fb-483e-9a20-ebca398a7942)
-
 
 ## ✨ 주요 기능
 1. **실시간 날씨 정보 제공**  
