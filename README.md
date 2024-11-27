@@ -15,29 +15,29 @@ WeatherTalk은 사용자 경험을 강화하기 위해 **OpenAI API**를 활용�
 
 ## 🛠️ 기술 스택
 ### **프론트엔드**
-- ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white) **React**
-- ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white) **Next.js**  
-- ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) **TypeScript**
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) 
 
 ### **스타일링**
-- ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white) **TailwindCSS**: 
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white)
 
 ### **상태 관리**
-- ![Zustand](https://img.shields.io/badge/Zustand-404040?logo=github&logoColor=white) **Zustand**  
-- ![React Query](https://img.shields.io/badge/React_Query-FF4154?logo=react-query&logoColor=white) **React Query**: 서버 상태 관리 및 데이터 동기화  
+![Zustand](https://img.shields.io/badge/Zustand-404040?logo=github&logoColor=white)
+![React Query](https://img.shields.io/badge/React_Query-FF4154?logo=react-query&logoColor=white)
 
 ### **배포**
-- ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) **Vercel**
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) **Vercel**
 
 
 ## 🌐 주요 API
 ### **메시지 생성**
-- **[OpenAI API](https://platform.openai.com/docs/)**  
+**[OpenAI API](https://platform.openai.com/docs/)**  
   - OpenAI GPT 모델을 활용하여 캐릭터가 대화형 메시지로 날씨 정보를 제공합니다.  
 
 ### **날씨 데이터**
-- **[OpenWeatherMap API](https://openweathermap.org/api)**  
-- **[Geocoding API](https://openweathermap.org/api/geocoding-api)**  
+**[OpenWeatherMap API](https://openweathermap.org/api)**  
+**[Geocoding API](https://openweathermap.org/api/geocoding-api)**  
 
 
 ## 🔗 라이브 데모
