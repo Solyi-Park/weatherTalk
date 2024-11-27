@@ -31,13 +31,15 @@ WeatherTalk은 사용자 경험을 강화하기 위해 **OpenAI API**를 활용�
 
 
 ## 🌐 주요 API
-### **메시지 생성**
-**[OpenAI API](https://platform.openai.com/docs/)**  
-  - OpenAI GPT 모델을 활용하여 캐릭터가 대화형 메시지로 날씨 정보를 제공합니다.  
-
 ### **날씨 데이터**
-**[OpenWeatherMap API](https://openweathermap.org/api)**  
-**[Geocoding API](https://openweathermap.org/api/geocoding-api)**  
+- **[OpenWeatherMap API](https://openweathermap.org/api)**  
+  - 현재 날씨 데이터를 제공합니다.  
+- **[Geocoding API](https://openweathermap.org/api/geocoding-api)**  
+  - 사용자의 위치를 위도와 경도로 변환합니다.  
+
+### **메시지 생성**
+- **[OpenAI API](https://platform.openai.com/docs/)**  
+  - OpenAI GPT 모델을 활용하여 캐릭터가 대화형 메시지로 날씨 정보를 제공합니다.  
 
 
 ## 🔗 라이브 데모
