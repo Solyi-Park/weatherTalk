@@ -27,7 +27,7 @@ WeatherTalk은 사용자 경험을 강화하기 위해 **OpenAI API**를 활용�
 ![React Query](https://img.shields.io/badge/React_Query-FF4154?logo=react-query&logoColor=white)
 
 ### **배포**
-![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) **Vercel**
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) 
 
 
 ## 🌐 주요 API
