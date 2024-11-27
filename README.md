@@ -41,7 +41,7 @@ WeatherTalk은 사용자 경험을 강화하기 위해 **OpenAI API**를 활용�
 
 
 ## 🔗 라이브 데모
-- **[WeatherTalk Live Demo](https://weatherTalk.vercel.app)**  
+- **[WeatherTalk Live Demo](https://weather-talk.vercel.app)**  
 
 ## 📸 데모 스크린샷
 ### **랜딩 페이지**
