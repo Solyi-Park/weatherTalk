@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useCaster } from "../../context/CasterContext";
 import MarkDownViewer from "../MarkDownViewer";
 import TextLoader from "../TextLoader";
 import WeatherDetail from "./WeatherDetail";
@@ -7,11 +6,12 @@ import { useOpenaiMessage } from "../../hooks/message";
 import { WeatherData } from "../../service/openai";
 import useWeather from "@/app/hooks/weather";
 import { LOADINGMESSAGES } from "@/app/constants/message";
+import { useCasterStore } from "@/app/store/caster";
 
 export default function OpenaiMessage() {
   const [showWeatherDetail, setShowWeatherDetail] = useState(false);
   const { weather } = useWeather();
-  const { caster } = useCaster();
+  const { caster } = useCasterStore();
   const { message, isLoading, MessageError } = useOpenaiMessage(
     caster.name,
     weather as WeatherData
