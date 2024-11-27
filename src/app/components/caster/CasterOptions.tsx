@@ -1,6 +1,7 @@
 import { Caster } from "../../service/openai";
 import { useCaster } from "../../context/CasterContext";
 import { CASTERS, FULLCASTERS } from "../../constants/casters";
+import { useCasterStore } from "@/app/store/caster";
 
 type Props = {
   onClose: () => void;
@@ -9,16 +10,15 @@ type Props = {
 export const CASTER_KEY = "caster";
 
 export default function CasterOptions({ onClose }: Props) {
-  const { setCaster } = useCaster();
+  const setCaster = useCasterStore((state) => state.setCaster);
 
   const handleSelect = (event: React.MouseEvent<HTMLLIElement>) => {
-    const clickedText = event.currentTarget.innerText as Caster;
+    const clickedText = event.currentTarget.innerText;
     const foundCaster = FULLCASTERS.find(
-      (caster) => caster.name == clickedText
+      (caster) => caster.name === clickedText
     );
     if (foundCaster) {
       setCaster(foundCaster);
-      localStorage.setItem(CASTER_KEY, clickedText);
     }
     onClose();
   };
